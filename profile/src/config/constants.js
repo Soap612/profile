@@ -27,7 +27,7 @@ export const SOCIAL_LINKS = [
 ];
 
 export const MESSAGING_APPS = [
-    { icon: MessageCircle, href: "https://wa.me/947067892", label: "WhatsApp", color: "bg-green-500/10 text-green-500 hover:bg-green-500/20" },
+    { icon: MessageCircle, href: "https://wa.me/94767067892", label: "WhatsApp", color: "bg-green-500/10 text-green-500 hover:bg-green-500/20" },
     { icon: Send, href: "https://t.me/soap612", label: "Telegram", color: "bg-blue-500/10 text-blue-500 hover:bg-blue-500/20" },
     { icon: MessageSquare, href: "https://discord.com/users/934845738322636880", label: "Discord", color: "bg-indigo-500/10 text-indigo-500 hover:bg-indigo-500/20" },
 ];
