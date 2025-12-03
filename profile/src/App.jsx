@@ -3,8 +3,6 @@ import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motio
 import {
   MessageSquare,
   ExternalLink,
-  Terminal,
-  ArrowRight,
   X
 } from 'lucide-react';
 
@@ -16,6 +14,7 @@ import SocialLinks from './components/SocialLinks';
 import Skills from './components/Skills';
 import ContactForm from './components/ContactForm';
 import RepoList from './components/RepoList';
+import profileImg from './assets/profile.jpg';
 
 export default function App() {
   // Cursor Physics
@@ -31,8 +30,18 @@ export default function App() {
   const [expandedProfile, setExpandedProfile] = useState(false);
   const [repos, setRepos] = useState([]);
   const [time, setTime] = useState(new Date());
+  const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef(null);
   const lanyardData = useLanyard(DISCORD_ID);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.matchMedia('(max-width: 768px)').matches || 'ontouchstart' in window);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 1000);
@@ -67,36 +76,42 @@ export default function App() {
   };
 
   const handleMouseMove = (e) => {
-    mouseX.set(e.clientX);
-    mouseY.set(e.clientY);
+    if (!isMobile) {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+    }
   };
 
   return (
     <div
-      className="min-h-screen bg-black text-zinc-100 selection:bg-indigo-500/30 font-sans cursor-none"
+      className={`min-h-screen bg-black text-zinc-100 selection:bg-indigo-500/30 font-sans ${!isMobile ? 'cursor-none' : ''}`}
       onMouseMove={handleMouseMove}
     >
-      {/* Custom Cursor */}
-      <motion.div
-        className="fixed top-0 left-0 w-8 h-8 border-2 border-indigo-500 rounded-full pointer-events-none z-[100] mix-blend-difference"
-        style={{
-          x: cursorX,
-          y: cursorY,
-          translateX: "-50%",
-          translateY: "-50%"
-        }}
-      >
-        <div className="absolute inset-0 bg-indigo-500/20 rounded-full blur-sm"></div>
-      </motion.div>
-      <motion.div
-        className="fixed top-0 left-0 w-2 h-2 bg-white rounded-full pointer-events-none z-[100]"
-        style={{
-          x: cursorDotX,
-          y: cursorDotY,
-          translateX: "-50%",
-          translateY: "-50%"
-        }}
-      />
+      {/* Custom Cursor - Only on Desktop */}
+      {!isMobile && (
+        <>
+          <motion.div
+            className="fixed top-0 left-0 w-8 h-8 border-2 border-indigo-500 rounded-full pointer-events-none z-[100] mix-blend-difference"
+            style={{
+              x: cursorX,
+              y: cursorY,
+              translateX: "-50%",
+              translateY: "-50%"
+            }}
+          >
+            <div className="absolute inset-0 bg-indigo-500/20 rounded-full blur-sm"></div>
+          </motion.div>
+          <motion.div
+            className="fixed top-0 left-0 w-2 h-2 bg-white rounded-full pointer-events-none z-[100]"
+            style={{
+              x: cursorDotX,
+              y: cursorDotY,
+              translateX: "-50%",
+              translateY: "-50%"
+            }}
+          />
+        </>
+      )}
 
       {/* Background Effects */}
       <div className="fixed inset-0 z-0 pointer-events-none">
@@ -122,7 +137,7 @@ export default function App() {
             >
               <motion.img
                 layoutId="profile-image"
-                src="https://i.postimg.cc/mgxfwFD8/Gemini-Generated-Image-u5q3vcu5q3vcu5q3-(2).jpg"
+                src={profileImg}
                 className="w-full h-full object-contain bg-black/50"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent pointer-events-none"></div>
@@ -154,8 +169,6 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Custom Cursor (Duplicate removed, keeping only one instance) */}
-
       <div className="relative z-10 max-w-6xl mx-auto p-4 md:p-8 lg:p-12">
         <motion.div
           ref={containerRef}
@@ -178,7 +191,7 @@ export default function App() {
                   >
                     <motion.img
                       layoutId="profile-image"
-                      src="https://i.postimg.cc/mgxfwFD8/Gemini-Generated-Image-u5q3vcu5q3vcu5q3-(2).jpg"
+                      src={profileImg}
                       alt="Profile"
                       className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                     />
@@ -319,7 +332,7 @@ export default function App() {
 
       {/* Footer */}
       <footer className="mt-12 text-center text-zinc-600 text-sm pb-8">
-        <p>© 2025 Alex Dev. Built with React & Tailwind.</p>
+        <p>© 2025 Methmika Manipura. Built with React & Tailwind.</p>
       </footer>
     </div >
   );

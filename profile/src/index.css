@@ -267,3 +267,29 @@
     clip: rect(20px, 9999px, 40px, 0);
   }
 }
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .glass-card {
+    backdrop-filter: blur(10px);
+    /* Reduce blur radius */
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: none;
+    /* Remove expensive shadows */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Disable expensive animations on mobile */
+  .animate-spin-slow,
+  .animate-float,
+  .glitch-text::before,
+  .glitch-text::after {
+    animation: none !important;
+    display: none;
+  }
+
+  /* Simplify background noise */
+  .bg-\[url\(\'https\:\/\/grainy-gradients\.vercel\.app\/noise\.svg\'\)\] {
+    opacity: 0.05 !important;
+  }
+}
