@@ -15,6 +15,9 @@ import SocialLinks from './components/SocialLinks';
 import Skills from './components/Skills';
 import ContactForm from './components/ContactForm';
 import RepoList from './components/RepoList';
+import Magnetic from './components/Magnetic';
+import StarField from './components/StarField';
+import GlitchText from './components/GlitchText';
 import profileImg from './assets/profile.jpg';
 
 export default function App() {
@@ -115,10 +118,11 @@ export default function App() {
       )}
 
       {/* Background Effects */}
+      <StarField />
       <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150"></div>
-        <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px] animate-pulse"></div>
-        <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] animate-pulse delay-1000"></div>
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 brightness-100 contrast-150 mix-blend-overlay"></div>
+        <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[120px] animate-pulse"></div>
+        <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-blue-600/05 rounded-full blur-[120px] animate-pulse delay-1000"></div>
       </div>
 
       {/* Expanded Profile Modal */}
@@ -150,18 +154,20 @@ export default function App() {
                 transition={{ delay: 0.2 }}
                 className="absolute bottom-8 left-8 right-8"
               >
-                <h2 className="text-2xl md:text-6xl font-black text-white mb-2 tracking-tighter glitch-text" data-text="METHMIKA MANIPURA">
-                  METHMIKA MANIPURA
+                <h2 className="text-2xl md:text-6xl font-black text-white mb-2 tracking-tighter">
+                  <GlitchText text="METHMIKA MANIPURA" />
                 </h2>
                 <p className="text-sm md:text-xl text-indigo-400 font-mono">SYSTEM.ADMIN // LEVEL_99</p>
               </motion.div>
 
-              <button
-                onClick={() => setExpandedProfile(false)}
-                className="absolute top-4 right-4 p-2 bg-black/50 rounded-full text-white hover:bg-white/20 transition-colors z-50"
-              >
-                <X size={24} />
-              </button>
+              <Magnetic>
+                <button
+                  onClick={() => setExpandedProfile(false)}
+                  className="absolute top-4 right-4 p-2 bg-black/50 rounded-full text-white hover:bg-white/20 transition-colors z-50"
+                >
+                  <X size={24} />
+                </button>
+              </Magnetic>
 
               {/* Scanlines */}
               <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-20 bg-[length:100%_2px,3px_100%]"></div>
@@ -201,8 +207,8 @@ export default function App() {
                 </div>
 
                 <div>
-                  <h1 className="text-4xl md:text-5xl font-black tracking-tight mb-2">
-                    Methmika <span className="text-indigo-400">Manipura</span>
+                  <h1 className="text-4xl md:text-5xl font-black tracking-tight mb-2 flex flex-col sm:block">
+                    <span>Methmika</span> <GlitchText text="Manipura" className="text-indigo-400 inline-block" />
                   </h1>
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-sm font-medium mb-4">
                     <span>Soap612</span>
@@ -287,32 +293,33 @@ export default function App() {
                         }
 
                         return (
-                          <a
-                            key={i}
-                            href={app.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={`flex items-center gap-3 p-3 rounded-xl bg-zinc-800/50 border border-zinc-700/50 transition-all hover:scale-105 ${app.color} group relative overflow-hidden`}
-                          >
-                            <app.icon size={18} className="shrink-0" />
-                            <div className="flex flex-col">
-                              <span className="font-medium leading-none">{app.label}</span>
-                              {isWhatsApp && (
-                                <div className="flex items-center gap-1.5 mt-1">
-                                  <div className={`w-1.5 h-1.5 rounded-full ${status.color} ${status.shadow} ${status.text === 'ONLINE' ? 'animate-pulse' : ''}`} />
-                                  <span className={`text-[9px] font-bold tracking-widest ${status.text === 'ONLINE' ? 'text-green-400' : 'text-zinc-500'}`}>
-                                    {status.text}
-                                  </span>
-                                </div>
-                              )}
-                            </div>
-                            <ExternalLink size={14} className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
+                          <Magnetic key={i}>
+                            <a
+                              href={app.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={`flex items-center gap-3 p-3 rounded-xl bg-zinc-800/50 border border-zinc-700/50 transition-all hover:scale-105 ${app.color} group relative overflow-hidden`}
+                            >
+                              <app.icon size={18} className="shrink-0" />
+                              <div className="flex flex-col">
+                                <span className="font-medium leading-none">{app.label}</span>
+                                {isWhatsApp && (
+                                  <div className="flex items-center gap-1.5 mt-1">
+                                    <div className={`w-1.5 h-1.5 rounded-full ${status.color} ${status.shadow} ${status.text === 'ONLINE' ? 'animate-pulse' : ''}`} />
+                                    <span className={`text-[9px] font-bold tracking-widest ${status.text === 'ONLINE' ? 'text-green-400' : 'text-zinc-500'}`}>
+                                      {status.text}
+                                    </span>
+                                  </div>
+                                )}
+                              </div>
+                              <ExternalLink size={14} className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
 
-                            {/* Ambient Glow for Online Status */}
-                            {isWhatsApp && status.text === 'ONLINE' && (
-                              <div className="absolute inset-0 bg-green-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-                            )}
-                          </a>
+                              {/* Ambient Glow for Online Status */}
+                              {isWhatsApp && status.text === 'ONLINE' && (
+                                <div className="absolute inset-0 bg-green-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                              )}
+                            </a>
+                          </Magnetic>
                         );
                       })}
                     </div>

@@ -46,6 +46,19 @@ const GlowingCard = ({ children, className = "", delay = 0, ...props }) => {
           `,
                 }}
             />
+            {/* Specular Glare / Border Shine */}
+            <motion.div
+                className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition duration-300 group-hover:opacity-100"
+                style={{
+                    background: useMotionTemplate`
+            radial-gradient(
+              400px circle at ${mouseX}px ${mouseY}px,
+              rgba(255, 255, 255, 0.1),
+              transparent 40%
+            )
+          `,
+                }}
+            />
             <div className="relative z-10 h-full">
                 {children}
             </div>
