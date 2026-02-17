@@ -51,12 +51,12 @@ export const SKILLS = [
 ];
 
 export const GAMES = [
-    "Minecraft",
-    "The Witcher 3",
-    "Red Dead Redemption 2",
-    "Assassin's Creed: Black Flag",
-    "Assassin's Creed: Unity",
-    "Assassin's Creed II",
-    "Assassin's Creed III",
-    "Forza Horizon 5"
+    { name: "The Witcher 3", id: "292030", image: "https://steamcdn-a.akamaihd.net/steam/apps/292030/capsule_616x353.jpg" },
+    { name: "Red Dead Redemption 2", id: "1174180", image: "https://steamcdn-a.akamaihd.net/steam/apps/1174180/capsule_616x353.jpg" },
+    { name: "Assassin's Creed: Black Flag", id: "242050", image: "https://steamcdn-a.akamaihd.net/steam/apps/242050/capsule_616x353.jpg" },
+    { name: "Assassin's Creed: Unity", id: "289650", image: "https://steamcdn-a.akamaihd.net/steam/apps/289650/capsule_616x353.jpg" },
+    { name: "Assassin's Creed II", id: "33230", image: "https://steamcdn-a.akamaihd.net/steam/apps/33230/capsule_616x353.jpg" },
+    { name: "Assassin's Creed III", id: "911400", image: "https://steamcdn-a.akamaihd.net/steam/apps/911400/capsule_616x353.jpg" },
+    { name: "Forza Horizon 5", id: "1551360", image: "https://steamcdn-a.akamaihd.net/steam/apps/1551360/capsule_616x353.jpg" },
+    { name: "Minecraft", id: "2328130", image: "https://steamcdn-a.akamaihd.net/steam/apps/2328130/capsule_616x353.jpg" }
 ];

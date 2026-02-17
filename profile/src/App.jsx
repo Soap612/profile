@@ -18,6 +18,7 @@ import RepoList from './components/RepoList';
 import Magnetic from './components/Magnetic';
 import StarField from './components/StarField';
 import GlitchText from './components/GlitchText';
+import GameSlideshow from './components/GameSlideshow';
 import profileImg from './assets/profile.jpg';
 
 export default function App() {
@@ -215,7 +216,7 @@ export default function App() {
                   </div>
                   <p className="text-zinc-400 text-lg leading-relaxed max-w-md">
                     Computer Science Undergrad at IIT Colombo. Tech nerd, tinkerer, and networking enthusiast.
-                    <span className="block mt-2 text-indigo-300">Gamer & Dialectical Materialist.</span>
+                    <span className="block mt-2 text-indigo-300">Gamer, Dialectical Materialist, & Soviet Lit Connoisseur (Gorky, Pushkin, Tolstoy).</span>
                   </p>
                 </div>
               </div>
@@ -337,28 +338,13 @@ export default function App() {
               </motion.div>
             </div>
 
-            {/* 5. Games Card */}
+            {/* 5. Games Card - Slideshow */}
             <motion.div variants={itemVariants}>
               <GlowingCard
-                className="w-full"
+                className="w-full p-0 overflow-hidden relative" // Remove padding for full-bleed image
                 style={{ animationDelay: '0.45s' }}
               >
-                <div className="flex flex-col">
-                  <div className="flex items-center gap-3 mb-4">
-                    <Gamepad2 className="text-indigo-400" />
-                    <h3 className="text-xl font-bold">Favorites</h3>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {GAMES.map((game, i) => (
-                      <span
-                        key={i}
-                        className="px-3 py-1.5 rounded-lg bg-zinc-800/50 border border-zinc-700/50 text-xs font-medium text-zinc-300 hover:bg-zinc-700/50 hover:text-white transition-colors"
-                      >
-                        {game}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                <GameSlideshow />
               </GlowingCard>
             </motion.div>
           </div>
