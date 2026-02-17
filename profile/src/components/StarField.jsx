@@ -9,7 +9,7 @@ const StarField = () => {
         let animationFrameId;
 
         // Configuration
-        const STAR_COUNT = 400;
+        const STAR_COUNT = 150;
         const SPEED = 0.05;
         const MOUSE_SENSITIVITY = 0.0005;
 
