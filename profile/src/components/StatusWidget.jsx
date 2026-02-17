@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Gamepad2, Disc, Moon } from 'lucide-react';
+import { Gamepad2, Moon } from 'lucide-react';
+import SpotifyVisualizer from './SpotifyVisualizer';
 
 const StatusWidget = ({ lanyardData }) => {
     if (!lanyardData) return (
@@ -54,42 +55,9 @@ const StatusWidget = ({ lanyardData }) => {
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
-                            className="flex items-center gap-4"
+                            className="w-full"
                         >
-                            <div className="relative shrink-0 group">
-                                {/* Vinyl Record Container */}
-                                <motion.div
-                                    className="w-20 h-20 rounded-full relative overflow-hidden shadow-xl border-2 border-zinc-800"
-                                    animate={{ rotate: 360 }}
-                                    transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-                                >
-                                    <img
-                                        src={spotify.album_art_url}
-                                        alt="Album Art"
-                                        className="w-full h-full object-cover opacity-80"
-                                    />
-                                    {/* Vinyl Center Hole & Details */}
-                                    <div className="absolute inset-0 rounded-full border-4 border-black/20 pointer-events-none"></div>
-                                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-zinc-900 rounded-full border-2 border-zinc-700 flex items-center justify-center">
-                                        <div className="w-2 h-2 bg-black rounded-full"></div>
-                                    </div>
-                                </motion.div>
-
-                                <div className="absolute -bottom-1 -right-1 bg-[#1DB954] text-black p-1.5 rounded-full shadow-lg z-10">
-                                    <Disc size={14} />
-                                </div>
-                            </div>
-                            <div className="min-w-0 flex-1">
-                                <div className="flex items-center gap-2 text-[#1DB954] text-[10px] font-bold uppercase tracking-wider mb-1">
-                                    LISTENING
-                                </div>
-                                <h4 className="text-white font-bold truncate leading-tight text-sm" title={spotify.song}>
-                                    {spotify.song}
-                                </h4>
-                                <p className="text-zinc-400 text-xs truncate" title={spotify.artist}>
-                                    {spotify.artist}
-                                </p>
-                            </div>
+                            <SpotifyVisualizer data={spotify} />
                         </motion.div>
                     ) : gameActivity ? (
                         <motion.div

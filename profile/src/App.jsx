@@ -33,11 +33,48 @@ export default function App() {
   const cursorDotY = useSpring(mouseY, { stiffness: 1000, damping: 50 });
 
   const [expandedProfile, setExpandedProfile] = useState(false);
+  // Comrade Mode State
+  const [isComradeMode, setIsComradeMode] = useState(false);
   const [repos, setRepos] = useState([]);
   const [time, setTime] = useState(new Date());
   const [isMobile, setIsMobile] = useState(false);
+
+  // Konami Code Listener
+  useEffect(() => {
+    const konamiCode = [
+      "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
+      "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight",
+      "b", "a"
+    ];
+    let cursor = 0;
+
+    const handleKeyDown = (e) => {
+      if (e.key === konamiCode[cursor]) {
+        cursor++;
+        if (cursor === konamiCode.length) {
+          setIsComradeMode(prev => !prev);
+          cursor = 0;
+        }
+      } else {
+        cursor = 0;
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   const containerRef = useRef(null);
-  const lanyardData = useLanyard(DISCORD_ID);
+  const { scrollYProgress } = useScroll();
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
+
+  const { lanyardData } = useLanyard(DISCORD_ID);
+
+  // Theme colors based on mode
+  const accentColor = isComradeMode ? "text-red-500" : "text-indigo-400";
+  const glowColor = isComradeMode ? "bg-red-500/20" : "bg-indigo-500/20";
+  const borderColor = isComradeMode ? "border-red-500/30" : "border-indigo-500/20";
 
   useEffect(() => {
     const checkMobile = () => {
@@ -201,22 +238,24 @@ export default function App() {
                       layoutId="profile-image"
                       src={profileImg}
                       alt="Profile"
-                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                      className={`w-full h-full object-cover transition-transform duration-500 hover:scale-110 bg-black/20 ${isComradeMode ? "sepia grayscale contrast-125" : ""}`}
                     />
                   </motion.div>
-                  <div className="absolute inset-0 bg-indigo-500/20 blur-2xl -z-10 rounded-full" />
+                  <div className={`absolute inset-0 ${glowColor} blur-2xl -z-10 rounded-full transition-colors duration-500`} />
                 </div>
 
                 <div>
                   <h1 className="text-4xl md:text-5xl font-black tracking-tight mb-2 flex flex-col sm:block">
-                    <span>Methmika</span> <GlitchText text="Manipura" className="text-indigo-400 inline-block" />
+                    <span>{isComradeMode ? "Comrade" : "Methmika"}</span> <GlitchText text="Manipura" className={`${accentColor} inline-block`} />
                   </h1>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-sm font-medium mb-4">
-                    <span>Soap612</span>
+                  <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full ${glowColor} border ${borderColor} ${isComradeMode ? "text-red-400" : "text-indigo-300"} text-sm font-medium mb-4`}>
+                    <span>{isComradeMode ? "Party Member #612" : "Soap612"}</span>
                   </div>
                   <p className="text-zinc-400 text-lg leading-relaxed max-w-md">
                     Computer Science Undergrad at IIT Colombo. Tech nerd, tinkerer, and networking enthusiast.
-                    <span className="block mt-2 text-indigo-300">Gamer, Dialectical Materialist, & Soviet Lit Connoisseur (Gorky, Pushkin, Tolstoy).</span>
+                    <span className={`block mt-2 ${isComradeMode ? "text-red-400 font-bold" : "text-indigo-300"}`}>
+                      {isComradeMode ? "SERVING THE UNION." : "Gamer, Dialectical Materialist, & Soviet Lit Connoisseur (Gorky, Pushkin, Tolstoy)."}
+                    </span>
                   </p>
                 </div>
               </div>
