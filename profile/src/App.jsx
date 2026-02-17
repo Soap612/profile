@@ -3,10 +3,11 @@ import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motio
 import {
   MessageSquare,
   ExternalLink,
-  X
+  X,
+  Gamepad2
 } from 'lucide-react';
 
-import { DISCORD_ID, GITHUB_USERNAME, SOCIAL_LINKS, MESSAGING_APPS } from './config/constants';
+import { DISCORD_ID, GITHUB_USERNAME, SOCIAL_LINKS, MESSAGING_APPS, BUSINESS_HOURS, GAMES } from './config/constants';
 import { useLanyard } from './hooks/useLanyard';
 import GlowingCard from './components/GlowingCard';
 import StatusWidget from './components/StatusWidget';
@@ -207,7 +208,8 @@ export default function App() {
                     <span>Soap612</span>
                   </div>
                   <p className="text-zinc-400 text-lg leading-relaxed max-w-md">
-                    Full-Stack Creative Developer building immersive web experiences. Obsessed with performance, animation, and clean UI.
+                    Computer Science Undergrad at IIT Colombo. Tech nerd, tinkerer, and networking enthusiast.
+                    <span className="block mt-2 text-indigo-300">Gamer & Dialectical Materialist.</span>
                   </p>
                 </div>
               </div>
@@ -269,25 +271,55 @@ export default function App() {
                       <h3 className="text-xl font-bold">Chat</h3>
                     </div>
                     <div className="space-y-3 flex-1">
-                      {MESSAGING_APPS.map((app, i) => (
-                        <a
-                          key={i}
-                          href={app.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`flex items-center gap-3 p-3 rounded-xl bg-zinc-800/50 border border-zinc-700/50 transition-all hover:scale-105 ${app.color} group`}
-                        >
-                          <app.icon size={18} />
-                          <span className="font-medium">{app.label}</span>
-                          <ExternalLink size={14} className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
-                        </a>
-                      ))}
+                      {MESSAGING_APPS.map((app, i) => {
+                        const isWhatsApp = app.label === "WhatsApp";
+                        let status = null;
+
+                        if (isWhatsApp) {
+                          const srilankaTime = new Date(time.toLocaleString("en-US", { timeZone: BUSINESS_HOURS.timezone }));
+                          const currentHour = srilankaTime.getHours();
+                          const isOnline = currentHour >= BUSINESS_HOURS.start && currentHour < BUSINESS_HOURS.end;
+                          status = {
+                            text: isOnline ? "ONLINE" : "OFFLINE",
+                            color: isOnline ? "bg-green-500" : "bg-zinc-500",
+                            shadow: isOnline ? "shadow-[0_0_8px_rgba(34,197,94,0.5)]" : ""
+                          };
+                        }
+
+                        return (
+                          <a
+                            key={i}
+                            href={app.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`flex items-center gap-3 p-3 rounded-xl bg-zinc-800/50 border border-zinc-700/50 transition-all hover:scale-105 ${app.color} group relative overflow-hidden`}
+                          >
+                            <app.icon size={18} className="shrink-0" />
+                            <div className="flex flex-col">
+                              <span className="font-medium leading-none">{app.label}</span>
+                              {isWhatsApp && (
+                                <div className="flex items-center gap-1.5 mt-1">
+                                  <div className={`w-1.5 h-1.5 rounded-full ${status.color} ${status.shadow} ${status.text === 'ONLINE' ? 'animate-pulse' : ''}`} />
+                                  <span className={`text-[9px] font-bold tracking-widest ${status.text === 'ONLINE' ? 'text-green-400' : 'text-zinc-500'}`}>
+                                    {status.text}
+                                  </span>
+                                </div>
+                              )}
+                            </div>
+                            <ExternalLink size={14} className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
+
+                            {/* Ambient Glow for Online Status */}
+                            {isWhatsApp && status.text === 'ONLINE' && (
+                              <div className="absolute inset-0 bg-green-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                            )}
+                          </a>
+                        );
+                      })}
                     </div>
                   </div>
                 </GlowingCard>
               </motion.div>
 
-              {/* 4. Stack Card */}
               <motion.div variants={itemVariants} className="h-full">
                 <GlowingCard
                   className="h-full"
@@ -297,6 +329,31 @@ export default function App() {
                 </GlowingCard>
               </motion.div>
             </div>
+
+            {/* 5. Games Card */}
+            <motion.div variants={itemVariants}>
+              <GlowingCard
+                className="w-full"
+                style={{ animationDelay: '0.45s' }}
+              >
+                <div className="flex flex-col">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Gamepad2 className="text-indigo-400" />
+                    <h3 className="text-xl font-bold">Favorites</h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {GAMES.map((game, i) => (
+                      <span
+                        key={i}
+                        className="px-3 py-1.5 rounded-lg bg-zinc-800/50 border border-zinc-700/50 text-xs font-medium text-zinc-300 hover:bg-zinc-700/50 hover:text-white transition-colors"
+                      >
+                        {game}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </GlowingCard>
+            </motion.div>
           </div>
         </motion.div>
 

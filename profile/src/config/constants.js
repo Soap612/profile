@@ -19,6 +19,12 @@ import {
 export const DISCORD_ID = "934845738322636880"; // Soap's ID
 export const GITHUB_USERNAME = "Soap612";
 
+export const BUSINESS_HOURS = {
+    start: 8, // 8 AM
+    end: 22,   // 10 PM
+    timezone: "Asia/Colombo" // User is in Sri Lanka
+};
+
 export const SOCIAL_LINKS = [
     { icon: Github, href: "https://github.com/Soap612", label: "GitHub", color: "hover:text-white" },
     { icon: Instagram, href: "https://www.instagram.com/methmikamanipura/", label: "Instagram", color: "hover:text-pink-500" },
@@ -42,4 +48,15 @@ export const SKILLS = [
     { name: "GraphQL", icon: Database, color: "text-pink-400" },
     { name: "AWS", icon: Cloud, color: "text-yellow-500" },
     { name: "Docker", icon: Box, color: "text-blue-500" }
+];
+
+export const GAMES = [
+    "Minecraft",
+    "The Witcher 3",
+    "Red Dead Redemption 2",
+    "Assassin's Creed: Black Flag",
+    "Assassin's Creed: Unity",
+    "Assassin's Creed II",
+    "Assassin's Creed III",
+    "Forza Horizon 5"
 ];
