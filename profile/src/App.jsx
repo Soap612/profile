@@ -43,8 +43,7 @@ export default function App() {
   useEffect(() => {
     const konamiCode = [
       "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
-      "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight",
-      "b", "a"
+      "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight"
     ];
     let cursor = 0;
 
@@ -63,6 +62,24 @@ export default function App() {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
+
+  // Comrade Mode Audio
+  useEffect(() => {
+    let audio = null;
+
+    if (isComradeMode) {
+      audio = new Audio("/Communist World Anthem (Internationale, short version).mp3");
+      audio.volume = 0.4;
+      audio.play().catch(e => console.error("Error playing anthem:", e));
+    }
+
+    return () => {
+      if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    };
+  }, [isComradeMode]);
 
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll();
