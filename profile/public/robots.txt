@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://me.mintoweb.com/sitemap.xml
+Sitemap: https://soapgg.site/sitemap.xml
