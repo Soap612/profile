@@ -60,3 +60,11 @@ export const GAMES = [
     { name: "Forza Horizon 5", id: "1551360", image: "https://steamcdn-a.akamaihd.net/steam/apps/1551360/capsule_616x353.jpg" },
     { name: "Minecraft", id: "2328130", image: "https://steamcdn-a.akamaihd.net/steam/apps/2328130/capsule_616x353.jpg" }
 ];
+
+export const COMMUNIST_WORKS = [
+    { name: "The Communist Manifesto", id: "manifesto", image: "https://m.media-amazon.com/images/I/91PHCX5PPML._AC_UF1000,1000_QL80_.jpg", author: "Kal Marx & Friedrich Engels" },
+    { name: "Das Kapital", id: "kapital", image: "https://m.media-amazon.com/images/I/71uXYtsV63L._AC_UF1000,1000_QL80_.jpg", author: "Karl Marx" },
+    { name: "State and Revolution", id: "staterev", image: "https://m.media-amazon.com/images/I/61jFT3d9FRL._AC_UF1000,1000_QL80_.jpg", author: "Vladimir Lenin" },
+    { name: "Reform or Revolution", id: "reformrev", image: "https://m.media-amazon.com/images/I/71wLpWqm+XL._AC_UF1000,1000_QL80_.jpg", author: "Rosa Luxemburg" },
+    { name: "What Is to Be Done?", id: "whatis", image: "https://m.media-amazon.com/images/I/51v1X6ygS8L._AC_UF1000,1000_QL80_.jpg", author: "Vladimir Lenin" }
+];

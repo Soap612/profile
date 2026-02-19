@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useMotionTemplate, useMotionValue, useSpring, useTransform } from 'framer-motion';
 
-const GlowingCard = ({ children, className = "", delay = 0, ...props }) => {
+const GlowingCard = ({ children, className = "", delay = 0, glowRGB = "99, 102, 241", ...props }) => {
     const ref = useRef(null);
     const x = useMotionValue(0);
     const y = useMotionValue(0);
@@ -40,7 +40,7 @@ const GlowingCard = ({ children, className = "", delay = 0, ...props }) => {
                     background: useMotionTemplate`
             radial-gradient(
               650px circle at ${mouseX}px ${mouseY}px,
-              rgba(99, 102, 241, 0.15),
+              rgba(${glowRGB}, 0.15),
               transparent 80%
             )
           `,

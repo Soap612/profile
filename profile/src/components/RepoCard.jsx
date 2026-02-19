@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { motion, useMotionTemplate, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Star, GitFork, ArrowUpRight } from 'lucide-react';
 
-const RepoCard = ({ repo }) => {
+const RepoCard = ({ repo, isComradeMode }) => {
     const ref = useRef(null);
 
     const x = useMotionValue(0);
@@ -59,10 +59,10 @@ const RepoCard = ({ repo }) => {
             {/* Content Lift */}
             <div style={{ transform: "translateZ(20px)" }} className="relative z-20 pointer-events-none">
                 <div className="flex items-center justify-between mb-3">
-                    <h4 className="font-bold text-zinc-100 truncate group-hover:text-indigo-400 transition-colors tracking-tight">
+                    <h4 className={`font-bold text-zinc-100 truncate ${isComradeMode ? 'group-hover:text-yellow-400' : 'group-hover:text-indigo-400'} transition-colors tracking-tight`}>
                         {repo.name}
                     </h4>
-                    <div className="p-1.5 rounded-full bg-white/5 text-zinc-400 group-hover:text-white group-hover:bg-indigo-500 transition-all">
+                    <div className={`p-1.5 rounded-full bg-white/5 text-zinc-400 group-hover:text-white ${isComradeMode ? 'group-hover:bg-red-600' : 'group-hover:bg-indigo-500'} transition-all`}>
                         <ArrowUpRight size={14} />
                     </div>
                 </div>
@@ -73,7 +73,7 @@ const RepoCard = ({ repo }) => {
 
                 <div className="flex items-center justify-between text-xs font-mono text-zinc-500">
                     <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.6)]"></div>
+                        <div className={`w-2 h-2 rounded-full ${isComradeMode ? 'bg-red-600 shadow-[0_0_8px_rgba(220,38,38,0.6)]' : 'bg-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.6)]'}`}></div>
                         <span className="group-hover:text-zinc-300 transition-colors">{repo.language || "Code"}</span>
                     </div>
 
@@ -81,7 +81,7 @@ const RepoCard = ({ repo }) => {
                         <div className="flex items-center gap-1 group-hover:text-yellow-400 transition-colors">
                             <Star size={12} /> {repo.stargazers_count}
                         </div>
-                        <div className="flex items-center gap-1 group-hover:text-blue-400 transition-colors">
+                        <div className={`flex items-center gap-1 ${isComradeMode ? 'group-hover:text-red-400' : 'group-hover:text-blue-400'} transition-colors`}>
                             <GitFork size={12} /> {repo.forks_count}
                         </div>
                     </div>
