@@ -25,7 +25,7 @@ const GameSlideshow = ({ isComradeMode }) => {
     const currentItem = data[currentIndex];
 
     return (
-        <div className="relative w-full h-full min-h-[200px] overflow-hidden rounded-2xl group">
+        <div className={`relative w-full h-full ${isComradeMode ? 'aspect-square' : 'min-h-[200px]'} overflow-hidden rounded-2xl group`}>
             {/* Slide Images */}
             <AnimatePresence mode="wait">
                 <motion.div

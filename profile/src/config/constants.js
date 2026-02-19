@@ -58,7 +58,7 @@ export const GAMES = [
     { name: "Assassin's Creed II", id: "33230", image: "https://steamcdn-a.akamaihd.net/steam/apps/33230/capsule_616x353.jpg" },
     { name: "Assassin's Creed III", id: "911400", image: "https://steamcdn-a.akamaihd.net/steam/apps/911400/capsule_616x353.jpg" },
     { name: "Forza Horizon 5", id: "1551360", image: "https://steamcdn-a.akamaihd.net/steam/apps/1551360/capsule_616x353.jpg" },
-    { name: "Minecraft", id: "minecraft", image: "https://image.api.playstation.com/vulcan/img/rnd/202010/2618/w48z6bzefZPrRcJHc7L8SO66.png" }
+    { name: "Minecraft", id: "minecraft", image: "/image.png" }
 ];
 
 export const COMMUNIST_WORKS = [
