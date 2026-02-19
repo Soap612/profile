@@ -58,13 +58,13 @@ export const GAMES = [
     { name: "Assassin's Creed II", id: "33230", image: "https://steamcdn-a.akamaihd.net/steam/apps/33230/capsule_616x353.jpg" },
     { name: "Assassin's Creed III", id: "911400", image: "https://steamcdn-a.akamaihd.net/steam/apps/911400/capsule_616x353.jpg" },
     { name: "Forza Horizon 5", id: "1551360", image: "https://steamcdn-a.akamaihd.net/steam/apps/1551360/capsule_616x353.jpg" },
-    { name: "Minecraft", id: "2328130", image: "https://steamcdn-a.akamaihd.net/steam/apps/2328130/capsule_616x353.jpg" }
+    { name: "Minecraft", id: "minecraft", image: "https://image.api.playstation.com/vulcan/img/rnd/202010/2618/w48z6bzefZPrRcJHc7L8SO66.png" }
 ];
 
 export const COMMUNIST_WORKS = [
-    { name: "The Communist Manifesto", id: "manifesto", image: "https://m.media-amazon.com/images/I/91PHCX5PPML._AC_UF1000,1000_QL80_.jpg", author: "Kal Marx & Friedrich Engels" },
-    { name: "Das Kapital", id: "kapital", image: "https://m.media-amazon.com/images/I/71uXYtsV63L._AC_UF1000,1000_QL80_.jpg", author: "Karl Marx" },
-    { name: "State and Revolution", id: "staterev", image: "https://m.media-amazon.com/images/I/61jFT3d9FRL._AC_UF1000,1000_QL80_.jpg", author: "Vladimir Lenin" },
-    { name: "Reform or Revolution", id: "reformrev", image: "https://m.media-amazon.com/images/I/71wLpWqm+XL._AC_UF1000,1000_QL80_.jpg", author: "Rosa Luxemburg" },
-    { name: "What Is to Be Done?", id: "whatis", image: "https://m.media-amazon.com/images/I/51v1X6ygS8L._AC_UF1000,1000_QL80_.jpg", author: "Vladimir Lenin" }
+    { name: "The Communist Manifesto", id: "manifesto", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Communist-manifesto.png/618px-Communist-manifesto.png", author: "Karl Marx & Friedrich Engels" },
+    { name: "Das Kapital", id: "kapital", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Das_Kapital.jpg/640px-Das_Kapital.jpg", author: "Karl Marx" },
+    { name: "State and Revolution", id: "staterev", image: "https://upload.wikimedia.org/wikipedia/commons/5/5a/The_State_and_Revolution.jpg", author: "Vladimir Lenin" },
+    { name: "Reform or Revolution", id: "reformrev", image: "https://upload.wikimedia.org/wikipedia/commons/d/d7/Social_Reform_or_Revolution.jpg", author: "Rosa Luxemburg" },
+    { name: "What Is to Be Done?", id: "whatis", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/What_Is_To_Be_Done.jpg/640px-What_Is_To_Be_Done.jpg", author: "Vladimir Lenin" }
 ];
