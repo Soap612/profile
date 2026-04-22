@@ -274,7 +274,11 @@ export default function App() {
                   <p className="text-zinc-400 text-lg leading-relaxed max-w-md">
                     Computer Science Undergrad at IIT Colombo. Tech nerd, tinkerer, and networking enthusiast.
                     <span className={`block mt-2 ${isComradeMode ? "text-yellow-400 font-bold" : "text-indigo-300"}`}>
+<<<<<<< HEAD
                       {isComradeMode ? "SERVING THE UNION." : "Passionate about building scalable systems, exploring emerging technologies, and solving real-world problems with code."}
+=======
+                      {isComradeMode ? "SERVING THE UNION." : "Gamer, Dialectical Materialist, & Soviet Lit Lover"}
+>>>>>>> 258503888c7c18fd766ae9ab10979b25d4770fdb
                     </span>
                   </p>
                 </div>
