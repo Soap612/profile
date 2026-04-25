@@ -11,7 +11,7 @@ const EMAILJS_PUBLIC_KEY = 'YYWImzuwWzD0rcxns';
 const ContactForm = ({ isComradeMode }) => {
     const formRef = useRef(null);
     const [status, setStatus] = useState('idle'); // 'idle' | 'sending' | 'success' | 'error'
-    const [contactType, setContactType] = useState('email'); // 'email' | 'whatsapp'
+    const [contactType, setContactType] = useState('whatsapp'); // 'email' | 'whatsapp'
     const [formData, setFormData] = useState({ from_name: '', from_email: '', message: '' });
 
     const accent = isComradeMode ? 'text-yellow-400' : 'text-indigo-400';
