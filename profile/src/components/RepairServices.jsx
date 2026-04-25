@@ -153,7 +153,7 @@ const RepairServices = ({ isComradeMode }) => {
 
             {/* Footer note */}
             <p className="text-center text-zinc-600 text-xs mt-5 font-mono">
-                Based in Ratnapura, Sri Lanka · Remote support available
+                Based in Dehiwala, Sri Lanka · Remote support available
             </p>
         </div>
     );

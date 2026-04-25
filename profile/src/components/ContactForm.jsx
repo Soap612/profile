@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
-import { Mail, MapPin, Send, CheckCircle, AlertCircle, Loader } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle, AlertCircle, Loader, Phone } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
-// ─── Replace these with your actual EmailJS credentials ───────────────────────
+// ─── EmailJS credentials ───────────────────────────────────────────────────────
 const EMAILJS_SERVICE_ID = 'service_rz6p3zv';
 const EMAILJS_TEMPLATE_ID = 'template_87fqoxd';
 const EMAILJS_PUBLIC_KEY = 'YYWImzuwWzD0rcxns';
@@ -11,6 +11,7 @@ const EMAILJS_PUBLIC_KEY = 'YYWImzuwWzD0rcxns';
 const ContactForm = ({ isComradeMode }) => {
     const formRef = useRef(null);
     const [status, setStatus] = useState('idle'); // 'idle' | 'sending' | 'success' | 'error'
+    const [contactType, setContactType] = useState('email'); // 'email' | 'whatsapp'
     const [formData, setFormData] = useState({ from_name: '', from_email: '', message: '' });
 
     const accent = isComradeMode ? 'text-yellow-400' : 'text-indigo-400';
@@ -34,8 +35,7 @@ const ContactForm = ({ isComradeMode }) => {
                 EMAILJS_PUBLIC_KEY
             );
             setStatus('success');
-            setFormData({ name: '', email: '', message: '' });
-            // Reset back to idle after 4 s
+            setFormData({ from_name: '', from_email: '', message: '' });
             setTimeout(() => setStatus('idle'), 4000);
         } catch (err) {
             console.error('EmailJS error:', err);
@@ -43,6 +43,8 @@ const ContactForm = ({ isComradeMode }) => {
             setTimeout(() => setStatus('idle'), 4000);
         }
     };
+
+    const isEmail = contactType === 'email';
 
     return (
         <div className="flex flex-col md:flex-row gap-8">
@@ -71,7 +73,7 @@ const ContactForm = ({ isComradeMode }) => {
                         </div>
                         <div>
                             <div className="text-xs text-zinc-500">Location</div>
-                            <div className="font-mono text-sm">Ratnapura, Sri Lanka</div>
+                            <div className="font-mono text-sm">Dehiwala, Sri Lanka</div>
                         </div>
                     </div>
                 </div>
@@ -94,6 +96,7 @@ const ContactForm = ({ isComradeMode }) => {
                 ) : (
                     <form ref={formRef} className="space-y-4" onSubmit={handleSubmit}>
                         <div className="grid grid-cols-2 gap-4">
+                            {/* Name */}
                             <div className="space-y-2">
                                 <label className="text-xs text-zinc-400 font-medium ml-1">Name</label>
                                 <input
@@ -106,19 +109,65 @@ const ContactForm = ({ isComradeMode }) => {
                                     placeholder="John Doe"
                                 />
                             </div>
+
+                            {/* Email / WhatsApp toggle field */}
                             <div className="space-y-2">
-                                <label className="text-xs text-zinc-400 font-medium ml-1">Email</label>
-                                <input
-                                    type="email"
-                                    name="from_email"
-                                    required
-                                    value={formData.from_email}
-                                    onChange={handleChange}
-                                    className={`w-full bg-zinc-800/50 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none ${focusBorder} focus:bg-zinc-800 transition-all`}
-                                    placeholder="john@example.com"
-                                />
+                                {/* Toggle pills */}
+                                <div className="flex items-center gap-1 ml-1">
+                                    <button
+                                        type="button"
+                                        onClick={() => setContactType('email')}
+                                        className={`flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full transition-all ${
+                                            isEmail
+                                                ? 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/40'
+                                                : 'text-zinc-600 hover:text-zinc-400'
+                                        }`}
+                                    >
+                                        <Mail size={9} /> Email
+                                    </button>
+                                    <span className="text-zinc-700 text-[10px]">/</span>
+                                    <button
+                                        type="button"
+                                        onClick={() => setContactType('whatsapp')}
+                                        className={`flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full transition-all ${
+                                            !isEmail
+                                                ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
+                                                : 'text-zinc-600 hover:text-zinc-400'
+                                        }`}
+                                    >
+                                        <Phone size={9} /> WhatsApp
+                                    </button>
+                                </div>
+
+                                {isEmail ? (
+                                    <input
+                                        key="email-input"
+                                        type="email"
+                                        name="from_email"
+                                        required
+                                        value={formData.from_email}
+                                        onChange={handleChange}
+                                        className={`w-full bg-zinc-800/50 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none ${focusBorder} focus:bg-zinc-800 transition-all`}
+                                        placeholder="john@example.com"
+                                    />
+                                ) : (
+                                    <input
+                                        key="whatsapp-input"
+                                        type="tel"
+                                        name="from_email"
+                                        required
+                                        value={formData.from_email}
+                                        onChange={handleChange}
+                                        className="w-full bg-zinc-800/50 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-500/50 focus:bg-zinc-800 transition-all"
+                                        placeholder="+94 76 123 4567"
+                                    />
+                                )}
                             </div>
                         </div>
+
+                        {/* Hidden field to tell EmailJS which contact method was used */}
+                        <input type="hidden" name="contact_type" value={contactType === 'email' ? 'Email' : 'WhatsApp'} />
+
                         <div className="space-y-2">
                             <label className="text-xs text-zinc-400 font-medium ml-1">Message</label>
                             <textarea
@@ -130,6 +179,7 @@ const ContactForm = ({ isComradeMode }) => {
                                 placeholder="Tell me about your project..."
                             />
                         </div>
+
                         <button
                             type="submit"
                             disabled={status === 'sending'}
