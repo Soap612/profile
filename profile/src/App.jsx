@@ -271,12 +271,32 @@ export default function App() {
                   <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full ${glowColor} border ${borderColor} ${isComradeMode ? "text-yellow-400" : "text-indigo-300"} text-sm font-medium mb-4`}>
                     <span>{isComradeMode ? "Party Member #612" : "Soap612"}</span>
                   </div>
-                  <p className="text-zinc-400 text-lg leading-relaxed max-w-md">
-                    Computer Science Undergrad at IIT Colombo. Tech nerd, tinkerer, and networking enthusiast.
-                    <span className={`block mt-2 ${isComradeMode ? "text-yellow-400 font-bold" : "text-indigo-300"}`}>
-                      {isComradeMode ? "SERVING THE UNION." : "Passionate about building scalable systems, exploring emerging technologies, and solving real-world problems with code."}
-                    </span>
-                  </p>
+                  <div className="space-y-3">
+                    <p className="text-zinc-400 text-sm leading-relaxed max-w-md">
+                      {isComradeMode ? (
+                        <span className="text-yellow-400 font-bold tracking-widest">SERVING THE UNION.</span>
+                      ) : (
+                        <>
+                          <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold mr-2 mb-2 border ${isComradeMode ? "bg-yellow-500/10 border-yellow-500/30 text-yellow-300" : "bg-indigo-500/10 border-indigo-500/30 text-indigo-300"}`}>
+                            <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse inline-block" />
+                            CS Undergrad
+                          </span>
+                          <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold mr-2 mb-2 border bg-purple-500/10 border-purple-500/30 text-purple-300`}>
+                            🏛️ IIT Colombo
+                          </span>
+                          <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold mr-2 mb-2 border bg-cyan-500/10 border-cyan-500/30 text-cyan-300`}>
+                            ⚡ Tech Nerd
+                          </span>
+                          <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold mr-2 mb-2 border bg-emerald-500/10 border-emerald-500/30 text-emerald-300`}>
+                            🔧 Tinkerer
+                          </span>
+                          <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold mr-2 mb-2 border bg-sky-500/10 border-sky-500/30 text-sky-300`}>
+                            📡 Networking Enthusiast
+                          </span>
+                        </>
+                      )}
+                    </p>
+                  </div>
                 </div>
               </div>
 
