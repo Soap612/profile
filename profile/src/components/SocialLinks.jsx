@@ -4,7 +4,7 @@ import Magnetic from './Magnetic';
 
 const SocialLinks = () => {
     return (
-        <div className="mt-8 flex gap-3 flex-wrap">
+        <>
             {SOCIAL_LINKS.map((link, i) => (
                 <Magnetic key={i}>
                     <a
@@ -18,7 +18,7 @@ const SocialLinks = () => {
                     </a>
                 </Magnetic>
             ))}
-        </div>
+        </>
     );
 };
 

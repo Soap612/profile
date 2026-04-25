@@ -95,8 +95,6 @@ const RepairServices = ({ isComradeMode }) => {
             <div className="flex items-center gap-3 mb-6">
                 <div className="relative">
                     <Wrench className={accent} size={22} />
-                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-emerald-400 rounded-full animate-ping" />
-                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-emerald-400 rounded-full" />
                 </div>
                 <div>
                     <h3 className="text-xl font-bold leading-none">Services & Skills</h3>
