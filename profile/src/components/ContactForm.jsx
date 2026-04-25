@@ -11,7 +11,7 @@ const EMAILJS_PUBLIC_KEY = 'YYWImzuwWzD0rcxns';
 const ContactForm = ({ isComradeMode }) => {
     const formRef = useRef(null);
     const [status, setStatus] = useState('idle'); // 'idle' | 'sending' | 'success' | 'error'
-    const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+    const [formData, setFormData] = useState({ from_name: '', from_email: '', message: '' });
 
     const accent = isComradeMode ? 'text-yellow-400' : 'text-indigo-400';
     const focusBorder = isComradeMode ? 'focus:border-red-500/50' : 'focus:border-indigo-500/50';
@@ -100,7 +100,7 @@ const ContactForm = ({ isComradeMode }) => {
                                     type="text"
                                     name="from_name"
                                     required
-                                    value={formData.name}
+                                    value={formData.from_name}
                                     onChange={handleChange}
                                     className={`w-full bg-zinc-800/50 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none ${focusBorder} focus:bg-zinc-800 transition-all`}
                                     placeholder="John Doe"
@@ -112,7 +112,7 @@ const ContactForm = ({ isComradeMode }) => {
                                     type="email"
                                     name="from_email"
                                     required
-                                    value={formData.email}
+                                    value={formData.from_email}
                                     onChange={handleChange}
                                     className={`w-full bg-zinc-800/50 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none ${focusBorder} focus:bg-zinc-800 transition-all`}
                                     placeholder="john@example.com"

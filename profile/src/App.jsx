@@ -4,13 +4,12 @@ import {
   MessageSquare,
   ExternalLink,
   X,
-  Gamepad2
+  Gamepad2,
+  Download
 } from 'lucide-react';
 
-import { DISCORD_ID, GITHUB_USERNAME, SOCIAL_LINKS, MESSAGING_APPS, BUSINESS_HOURS, GAMES } from './config/constants';
-import { useLanyard } from './hooks/useLanyard';
+import { GITHUB_USERNAME, MESSAGING_APPS, BUSINESS_HOURS } from './config/constants';
 import GlowingCard from './components/GlowingCard';
-import StatusWidget from './components/StatusWidget';
 import SocialLinks from './components/SocialLinks';
 import Skills from './components/Skills';
 import ContactForm from './components/ContactForm';
@@ -19,6 +18,7 @@ import Magnetic from './components/Magnetic';
 import StarField from './components/StarField';
 import GlitchText from './components/GlitchText';
 import GameSlideshow from './components/GameSlideshow';
+import RepairServices from './components/RepairServices';
 import profileImg from './assets/profile.jpg';
 
 export default function App() {
@@ -85,8 +85,8 @@ export default function App() {
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
+  const scrollBarScaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
-  const lanyardData = useLanyard(DISCORD_ID);
 
   // Theme colors based on mode
   // Theme colors based on mode
@@ -148,6 +148,11 @@ export default function App() {
       className={`min-h-screen ${isComradeMode ? 'bg-red-950 selection:bg-yellow-500/30' : 'bg-black selection:bg-indigo-500/30'} text-zinc-100 font-sans ${!isMobile ? 'cursor-none' : ''} transition-colors duration-1000`}
       onMouseMove={handleMouseMove}
     >
+      {/* Scroll Progress Bar */}
+      <motion.div
+        className={`fixed top-0 left-0 right-0 h-[2px] origin-left z-[200] ${isComradeMode ? 'bg-gradient-to-r from-red-600 to-yellow-400' : 'bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500'}`}
+        style={{ scaleX: scrollBarScaleX }}
+      />
       {/* Custom Cursor - Only on Desktop */}
       {!isMobile && (
         <>
@@ -302,6 +307,20 @@ export default function App() {
 
               <SocialLinks />
 
+              {/* CV Download Button */}
+              {!isComradeMode && (
+                <Magnetic>
+                  <a
+                    href="/cv.pdf"
+                    download="Methmika_Manipura_CV.pdf"
+                    className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/40 border border-indigo-500/30 hover:border-indigo-500/60 text-indigo-300 hover:text-white text-sm font-semibold transition-all duration-300 group shadow-lg hover:shadow-indigo-500/20"
+                  >
+                    <Download size={15} className="group-hover:-translate-y-0.5 group-hover:scale-110 transition-transform duration-200" />
+                    Download CV
+                  </a>
+                </Magnetic>
+              )}
+
               {/* System Stats */}
               <div className="mt-8 pt-6 border-t border-white/5 grid grid-cols-2 gap-4">
                 <div className="p-3 rounded-xl bg-zinc-800/20 border border-white/5">
@@ -332,18 +351,8 @@ export default function App() {
             </GlowingCard>
           </motion.div>
 
-          {/* Right Column: Status, Chat, Stack */}
+          {/* Right Column: Chat, Stack, Games */}
           <div className="flex flex-col gap-4 md:gap-6">
-            {/* 2. Live Status Card */}
-            <motion.div variants={itemVariants}>
-              <GlowingCard
-                className="h-fit"
-                style={{ animationDelay: '0.2s' }}
-                glowRGB={glowRGB}
-              >
-                <StatusWidget lanyardData={lanyardData} />
-              </GlowingCard>
-            </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
               {/* 3. Chat Card */}
@@ -452,6 +461,17 @@ export default function App() {
             </GlowingCard>
           </motion.div>
 
+          {/* Tech Repair Services */}
+          <motion.div variants={itemVariants}>
+            <GlowingCard
+              className="w-full"
+              style={{ animationDelay: '0.55s' }}
+              glowRGB={glowRGB}
+            >
+              <RepairServices isComradeMode={isComradeMode} />
+            </GlowingCard>
+          </motion.div>
+
           {/* Contact Form */}
           <motion.div variants={itemVariants}>
             <GlowingCard
@@ -466,8 +486,16 @@ export default function App() {
       </div>
 
       {/* Footer */}
-      <footer className="mt-12 text-center text-zinc-600 text-sm pb-8">
-        <p>© 2025 Methmika Manipura. Built with React & Tailwind.</p>
+      <footer className="mt-16 pb-10 px-4">
+        <div className="max-w-6xl mx-auto border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-zinc-600 text-xs font-mono">
+            © 2026 <span className="text-zinc-400">Methmika Manipura</span>. Built with React & love.
+          </p>
+          <div className="flex items-center gap-1.5 text-zinc-700 text-xs font-mono">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            All systems operational
+          </div>
+        </div>
       </footer>
     </div>
   );
