@@ -11,6 +11,7 @@
     "tw:init": "npm run tw:init --prefix profile"
   },
   "dependencies": {
+    "baseline-browser-mapping": "^2.10.22",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

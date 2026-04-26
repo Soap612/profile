@@ -44,8 +44,9 @@ export const SKILLS = [
     { name: "React", icon: Layout, color: "text-cyan-400" },
     { name: "Next.js", icon: Globe, color: "text-white" },
     { name: "Node.js", icon: Server, color: "text-green-500" },
-    { name: "Rust", icon: Zap, color: "text-orange-500" },
-    { name: "GraphQL", icon: Database, color: "text-pink-400" },
+    { name: "Python", icon: Zap, color: "text-orange-500" },
+    { name: "PocketBase", icon: Database, color: "text-teal-400" },
+    { name: "Supabase", icon: Database, color: "text-emerald-400" },
     { name: "AWS", icon: Cloud, color: "text-yellow-500" },
     { name: "Docker", icon: Box, color: "text-blue-500" }
 ];
@@ -53,7 +54,7 @@ export const SKILLS = [
 export const GAMES = [
     { name: "The Witcher 3", id: "292030", image: "https://steamcdn-a.akamaihd.net/steam/apps/292030/capsule_616x353.jpg" },
     { name: "Red Dead Redemption 2", id: "1174180", image: "https://steamcdn-a.akamaihd.net/steam/apps/1174180/capsule_616x353.jpg" },
-    { name: "Assassin's Creed: Black Flag", id: "242050", image: "https://steamcdn-a.akamaihd.net/steam/apps/242050/capsule_616x353.jpg" },
+    { name: "Assassin's Creed: Black Flag", id: "242050", image: "/blackflag.jpg" },
     { name: "Assassin's Creed: Unity", id: "289650", image: "https://steamcdn-a.akamaihd.net/steam/apps/289650/capsule_616x353.jpg" },
     { name: "Assassin's Creed II", id: "33230", image: "https://steamcdn-a.akamaihd.net/steam/apps/33230/capsule_616x353.jpg" },
     { name: "Assassin's Creed III", id: "911400", image: "https://steamcdn-a.akamaihd.net/steam/apps/911400/capsule_616x353.jpg" },
@@ -62,9 +63,28 @@ export const GAMES = [
 ];
 
 export const COMMUNIST_WORKS = [
-    { name: "The Communist Manifesto", id: "manifesto", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Communist-manifesto.png/618px-Communist-manifesto.png", author: "Karl Marx & Friedrich Engels" },
-    { name: "Das Kapital", id: "kapital", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Das_Kapital.jpg/640px-Das_Kapital.jpg", author: "Karl Marx" },
-    { name: "State and Revolution", id: "staterev", image: "https://upload.wikimedia.org/wikipedia/commons/5/5a/The_State_and_Revolution.jpg", author: "Vladimir Lenin" },
-    { name: "Reform or Revolution", id: "reformrev", image: "https://upload.wikimedia.org/wikipedia/commons/d/d7/Social_Reform_or_Revolution.jpg", author: "Rosa Luxemburg" },
-    { name: "What Is to Be Done?", id: "whatis", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/What_Is_To_Be_Done.jpg/640px-What_Is_To_Be_Done.jpg", author: "Vladimir Lenin" }
+    {
+        name: "The Communist Manifesto",
+        id: "manifesto",
+        image: "https://www.intpubnyc.com/wp-content/uploads/2016/07/91zdHwFmpRL-768x1158.jpg",
+        author: "Karl Marx & Friedrich Engels"
+    },
+    {
+        name: "Das Kapital",
+        id: "kapital",
+        image: "https://m.media-amazon.com/images/I/61YdB3iO9dL._SY466_.jpg",
+        author: "Karl Marx"
+    },
+    {
+        name: "State and Revolution",
+        id: "staterev",
+        image: "https://m.media-amazon.com/images/I/61vi9CW6cWL._SL1360_.jpg",
+        author: "Vladimir Lenin"
+    },
+    {
+        name: "What Is to Be Done?",
+        id: "whatis",
+        image: "https://m.media-amazon.com/images/I/61ynAWXEHVL._SY466_.jpg",
+        author: "Vladimir Lenin"
+    }
 ];

@@ -25,7 +25,7 @@ const GameSlideshow = ({ isComradeMode }) => {
     const currentItem = data[currentIndex];
 
     return (
-        <div className={`relative w-full h-full ${isComradeMode ? 'aspect-square' : 'min-h-[200px]'} overflow-hidden rounded-2xl group`}>
+        <div className={`relative w-full h-full ${isComradeMode ? 'aspect-[3/4]' : 'min-h-[200px]'} overflow-hidden rounded-2xl group`}>
             {/* Slide Images */}
             <AnimatePresence mode="wait">
                 <motion.div
@@ -69,7 +69,6 @@ const GameSlideshow = ({ isComradeMode }) => {
                         exit={{ opacity: 0, y: -10 }}
                         transition={{ delay: 0.2 }}
                         className="text-2xl font-black text-white leading-tight drop-shadow-lg"
-                    >
                     >
                         {currentItem.name}
                         {isComradeMode && <span className="block text-sm font-normal text-zinc-300 mt-1">{currentItem.author}</span>}
